@@ -3,18 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 //-------------------------------------------------------------------------------------------------
-class Quiz extends Model
+class Answer extends Model
 {
     protected $fillable = [
-        'title',
+        'question_id',
+        'text',
+        'is_correct'
     ];
 
+    protected $casts = [ 'is_correct' => 'boolean' ];
+
     //---------------------------------------------------------------------------------------------
-    public function questions(): HasMany
+    public function question(): BelongsTo
     {
-        return $this->hasMany(Question::class);
+        return $this->belongsTo(Question::class);
     }
 }
