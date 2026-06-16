@@ -1,4 +1,5 @@
-
+## Nachschlagewerke
+- Migrations: https://laravel.com/docs/13.x/migrations#main-content
 
 
 ## Aufteilung der Komponenten
