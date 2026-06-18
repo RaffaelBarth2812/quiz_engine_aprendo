@@ -1,0 +1,19 @@
+meta {
+  name: Start Quiz
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8000/api/quizzes/6/sessions
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "session_id": 12,
+    "quiz_id": 1,
+    "started_at": "2026-06-16T10:30:00Z"
+  }
+}
