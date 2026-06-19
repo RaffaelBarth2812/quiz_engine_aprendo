@@ -42,6 +42,7 @@ Folgende Komponenten finden Anwendung in dieser Applikation:
 1 QuizSession   hat n SessionAnswer(s)
 1 SessionAnswer hat 1 Question & 1 Answer (Implementation von Single-Choice)
 
+```text
 Quiz 1
 ├─ Question 1 (id 1)
 │   └─ Answer 1 (id 1)
@@ -60,6 +61,7 @@ Quiz 1
 │ 
 └─ QuizSession 
     └─ SessionAnswer
+```
 
 ## Designentscheidungen
 Konkret lässt sich sagen, dass alle bereits genannten Komponenten nochmals in zwei Modelle aufteilen lässt: Inhalt & Durchlauf
