@@ -61,12 +61,39 @@ Quiz 1
 └─ QuizSession 
     └─ SessionAnswer
 
+## Designentscheidungen
+Konkret lässt sich sagen, dass alle bereits genannten Komponenten nochmals in zwei Modelle aufteilen lässt: Inhalt & Durchlauf
+- Quiz, Question und Answer beschreiben den Inhalt des Quiz              -> Eingabe durch Quiz-Ersteller
+- QuizSession und SessionAnswer repräsentieren einen konkreten Durchlauf -> Eingabe durch Quiz-Teilnehmer
+
+Dadurch kann dasselbe Quiz beliebig oft durchgeführt werden, ohne die ursprünglichen Quizdaten zu verändern.
+
+### Antworten pro Session
+Antworten werden gesammelt über einen *einzelnen* API-Aufruf eingereicht.
+
+Vorteile:
+- Einfachere API
+- Weniger Requests
+- Einfachere Auswertung
+
+### Auswertung
+Die erreichten Punkte werden nicht dauerhaft gespeichert, sondern bei der Ergebnisabfrage berechnet.
+
+Vorteile:
+- Keine redundanten Daten (Ergebnis lässt sich aus gespeicherten Daten berechnen)
+- Einfaches Datenmodell
+
+Nachteil:
+- Berechnung muss immer wieder neu gemacht werden
+
+### Erweiterbarkeit für Multiple Choice
+Aktuell ist nur eine Implementation von Single-Choice vorhanden, diese wurde aber mit Hinblick auf weitere Antworttypen erstellt.
+'Question' besitzt ein feld 'type', das aktuell den Wert 'single_choice' enthält. Dadurch können zukünftig auch weitere Fragetypen ergänzt werden, ohne das grundlegende Datenmodell zu verändern.
+Die Funktion 'results' in 'QuizSessionController' wurde bereits so geschrieben, dass der Score unabhängig von Antworttyp berechnet wird.
 
 ## Offene Punkte
 - Aktuell ist es möglich, Antworten für Sessions zu submitten, welche nicht zusammengehören
 - Eingaben werden lediglich auf Typen etc. validiert und meist nicht nach Zusammengehörigkeit (Z.b Antworten zu falscher Session)
-
-
 
 ## Nachschlagewerke
 - Migrations: https://laravel.com/docs/13.x/migrations#main-content

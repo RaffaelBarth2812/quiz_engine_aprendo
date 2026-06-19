@@ -51,7 +51,8 @@ class QuizSessionController extends Controller
         $session = QuizSession::findOrFail($sessionId);
 
         foreach ($validated['answers'] as $answerData) {
-            // UPDATE OR CREATE?
+            // Create wenn: Noch keine Antwort für Frage vorhanden
+            // Update wenn: Antwort bereits vorhanden und wird von User revidiert
             SessionAnswer::updateOrCreate(
                 [
                     'session_id' => $session->id,
